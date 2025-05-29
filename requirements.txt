@@ -1,5 +1,8 @@
-Flask==2.3.3
-requests==2.31.0
-beautifulsoup4==4.12.2
-pandas==2.0.3
-gunicorn==21.2.0
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+douyin-tiktok-scraper>=3.1.2
+aiohttp>=3.9.1
+httpx>=0.25.0
+python-dotenv>=1.0.0
+python-dateutil>=2.8.2
