@@ -1,9 +1,19 @@
 services:
   - type: web
-    name: douyin-scraper-api
+    name: douyin-scraper
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    region: frankfurt  # Proche des serveurs chinois
+    buildCommand: |
+      pip install --upgrade pip && 
+      pip install -r requirements.txt
+    startCommand: |
+      uvicorn app:app --host 0.0.0.0 --port $PORT --workers 4
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.9.16
+      - key: PYTHONUNBUFFERED
+        value: "true"
+      - key: TZ
+        value: "Asia/Shanghai"  # Synchronisation temporelle avec Douyin
+      - key: HTTP_PROXY
+        value: "socks5://proxy.example.com:1080"  # Proxy optionnel
+    plan: starter
+    autoDeploy: true
